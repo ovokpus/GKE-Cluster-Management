@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-main
+  labels:
+    name: locust-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: locust-main
+  template:
+    metadata:
+      labels:
+        app: locust-main
+    spec:
+      containers:
+        - name: locust-main
+          image: gcr.io/${GOOGLE_CLOUD_PROJECT}/locust-tasks:latest
+          env:
+            - name: LOCUST_MODE
+              value: main
+            - name: TARGET_HOST
+              value: http://gb-frontend-svc
+          ports:
+            - name: loc-main-web
+              containerPort: 8089
+              protocol: TCP
+            - name: loc-main-p1
+              containerPort: 5557
+              protocol: TCP
+            - name: loc-main-p2
+              containerPort: 5558
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: locust-main
+  labels:
+    app: locust-main
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8089
+      targetPort: loc-main-web
+      protocol: TCP
+      name: loc-main-web
+    - port: 5557
+      targetPort: loc-main-p1
+      protocol: TCP
+      name: loc-main-p1
+    - port: 5558
+      targetPort: loc-main-p2
+      protocol: TCP
+      name: loc-main-p2
+  selector:
+    app: locust-main
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: locust-worker
+  labels:
+    name: locust-worker
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: locust-worker
+  template:
+    metadata:
+      labels:
+        app: locust-worker
+    spec:
+      containers:
+        - name: locust-worker
+          image: gcr.io/${GOOGLE_CLOUD_PROJECT}/locust-tasks:latest
+          env:
+            - name: LOCUST_MODE
+              value: worker
+            - name: LOCUST_MAIN
+              value: locust-main
+            - name: TARGET_HOST
+              value: http://gb-frontend-svc
