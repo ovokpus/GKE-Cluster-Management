@@ -1,6 +1,6 @@
-<p align="center"><img src="assets/banner.jpg" alt="Three interlocking block towers in brass, steel and white joined by a green rod beside a brass ruler" width="100%"></p>
-
 # GKE-Cluster-Management
+
+<p align="center"><img src="assets/banner.jpg" alt="Three interlocking block towers in brass, steel and white joined by a green rod beside a brass ruler" width="100%"></p>
 
 Google Cloud Architecture: Design, Implementations, Optimizations and Management
 
