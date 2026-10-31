@@ -2,6 +2,8 @@
 
 Google Cloud Architecture: Design, Implementations, Optimizations and Management
 
+> **New: reusable multi-cloud Terraform modules** (GCP, Azure, AWS) for small container apps live in [`terraform/`](terraform/README.md). Pieces of the GCP lab repos are folded into [`examples/from-labs/`](examples/from-labs), with attribution.
+
 ---
 
 ![image](img/instance-group.png)
