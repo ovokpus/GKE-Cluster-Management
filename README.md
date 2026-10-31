@@ -1,5 +1,7 @@
 # GKE-Cluster-Management
 
+<p align="center"><img src="assets/banner.jpg" alt="Three interlocking block towers in brass, steel and white joined by a green rod beside a brass ruler" width="100%"></p>
+
 Google Cloud Architecture: Design, Implementations, Optimizations and Management
 
 > **New: reusable multi-cloud Terraform modules** (GCP, Azure, AWS) for small container apps live in [`terraform/`](terraform/README.md). Pieces of the GCP lab repos are folded into [`examples/from-labs/`](examples/from-labs), with attribution.
